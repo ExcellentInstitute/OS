@@ -8,8 +8,10 @@
         /* Base Styles & Typography */
         :root {
             --primary-color: #0056b3;
-            --text-color: #333;
-            --bg-color: #f9f9f9;
+            --secondary-color: #ff9900;
+            --text-color: #2c3e50;
+            --bg-color: #f4f7f6;
+            --border-color: #e1e8ed;
         }
 
         body, html {
@@ -19,7 +21,7 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             height: 100%;
-            overflow: hidden; /* Hide default body scroll to use custom scroll container */
+            overflow: hidden; 
         }
 
         /* Scrollable Container */
@@ -29,6 +31,7 @@
             cursor: grab;
             position: relative;
             z-index: 1;
+            scroll-behavior: smooth;
         }
 
         .scroll-container:active {
@@ -37,58 +40,106 @@
 
         /* Content Wrapper */
         .content {
-            max-width: 900px;
+            max-width: 950px;
             margin: 0 auto;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.9); /* Slight transparency to show watermark */
+            padding: 50px 40px;
+            background: rgba(255, 255, 255, 0.95);
             min-height: 100%;
-            box-shadow: 0 0 15px rgba(0,0,0,0.05);
+            box-shadow: 0 0 25px rgba(0,0,0,0.08);
+            position: relative;
         }
 
-        /* Watermark Styles */
+        /* Logos & Watermark */
         .watermark-container {
             position: fixed;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             z-index: 0;
-            pointer-events: none; /* Allows clicking through the watermark */
-            opacity: 0.08; /* Light fade for watermark */
+            pointer-events: none;
+            opacity: 0.05; 
         }
 
         .watermark-container img {
-            width: 50vw;
-            max-width: 600px;
+            width: 60vw;
+            max-width: 700px;
             min-width: 300px;
-            border-radius: 50%; /* Forces the square image into a perfect circle */
+            border-radius: 50%;
             object-fit: cover;
             aspect-ratio: 1/1;
+        }
+
+        .top-logo {
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
 
         /* Headers & Text */
         h1 {
             color: var(--primary-color);
             text-align: center;
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 2.8em;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
             border-bottom: 3px solid var(--primary-color);
-            padding-bottom: 15px;
         }
 
         h2 {
             color: #004494;
-            margin-top: 40px;
-            border-left: 4px solid #ff9900;
-            padding-left: 10px;
+            margin-top: 45px;
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 15px;
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        h3 {
+            color: #34495e;
+            margin-top: 25px;
+            font-size: 1.2em;
         }
 
         p, li {
-            line-height: 1.8;
+            line-height: 1.7;
             font-size: 1.1em;
+            color: #444;
         }
 
         ul {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        strong {
+            color: #000;
+        }
+
+        /* Highlighting Key Terms */
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: 600;
+            color: #856404;
         }
 
         /* Action Bar (Print Button) */
@@ -101,47 +152,65 @@
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 10px 20px;
-            font-size: 1em;
-            border-radius: 5px;
+            padding: 12px 24px;
+            font-size: 1.05em;
+            font-weight: bold;
+            border-radius: 6px;
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: background 0.3s;
+            transition: all 0.3s ease;
         }
 
         button.print-btn:hover {
-            background-color: #004494;
+            background-color: #003d82;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
 
         /* Responsive Image Placeholder */
         .img-placeholder {
             width: 100%;
-            min-height: 250px;
-            background-color: #e0e0e0;
-            border: 2px dashed #999;
-            border-radius: 8px;
+            min-height: 300px;
+            background-color: #eaeaea;
+            border: 3px dashed #b0b0b0;
+            border-radius: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
+            color: #555;
             font-weight: bold;
-            font-size: 1.2em;
-            margin: 25px 0;
+            font-size: 1.3em;
+            margin: 35px 0;
             resize: vertical;
             overflow: auto;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            margin-top: 50px;
-            padding-top: 20px;
-            border-top: 1px solid #ccc;
-            font-size: 0.9em;
-            color: #555;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid var(--border-color);
         }
 
-        /* Prevent text selection while dragging to scroll */
+        footer h2 {
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0 0 10px 0;
+            font-size: 1.8em;
+        }
+
+        footer p {
+            margin: 5px 0;
+            color: #666;
+            font-size: 1em;
+        }
+
+        /* Prevent text selection while dragging */
         .no-select {
             user-select: none;
         }
@@ -157,12 +226,20 @@
                 box-shadow: none;
                 margin: 0;
                 padding: 0;
+                max-width: 100%;
             }
             .action-bar {
-                display: none; /* Hides the print button on the actual PDF */
+                display: none;
+            }
+            .img-placeholder {
+                border: 1px solid #ccc; /* Print-friendly border */
+                page-break-inside: avoid;
+            }
+            section {
+                page-break-inside: avoid;
             }
             .watermark-container {
-                opacity: 0.1 !important;
+                opacity: 0.08 !important;
                 position: fixed;
                 top: 50%;
                 left: 50%;
@@ -173,10 +250,11 @@
         }
 
         /* Mobile Responsiveness */
-        @media (max-width: 600px) {
-            h1 { font-size: 1.8em; }
-            h2 { font-size: 1.3em; }
-            p, li { font-size: 1em; }
+        @media (max-width: 768px) {
+            .content { padding: 30px 20px; }
+            h1 { font-size: 2.2em; }
+            h2 { font-size: 1.4em; }
+            .top-logo { width: 120px; height: 120px; }
         }
     </style>
 </head>
@@ -193,82 +271,113 @@
                 <button class="print-btn" onclick="window.print()">🖨️ Save as PDF / Print</button>
             </div>
 
+            <img src="excellent institute logo.jpg" class="top-logo" alt="Excellent Institute Logo">
+
             <h1>Operating System Basics</h1>
+            <div class="subtitle">Comprehensive Foundation Guide for Computer Fundamentals</div>
             
+            <section>
+                <h2>1. What is an Operating System (OS)?</h2>
+                <p>An Operating System (OS) is the most critical system software that acts as an intermediary (interface) between the computer hardware and the computer user. Every general-purpose computer must have an operating system to run other programs and applications.</p>
+                <h3>Core Functions of an OS:</h3>
+                <ul>
+                    <li><strong>Process Management:</strong> It allocates CPU time to various active programs, ensuring multiple applications can run simultaneously without crashing.</li>
+                    <li><strong>Memory Management:</strong> It tracks the primary memory (RAM), deciding which process gets memory, when, and how much.</li>
+                    <li><strong>File Management:</strong> It dictates how data is organized into files and directories on storage devices like Hard Drives and SSDs.</li>
+                    <li><strong>Device Management:</strong> It uses "Drivers" to communicate with hardware components like keyboards, mice, printers, and monitors.</li>
+                    <li><strong>Security:</strong> It prevents unauthorized access to programs and data using passwords and user access restrictions.</li>
+                </ul>
+            </section>
+
             <div class="img-placeholder">
-                [ Responsive Image Placeholder - Replace with your class diagram or cover image ]
+                [ Responsive Image Placeholder - Insert Diagram showing User -> Application -> Operating System -> Hardware ]
             </div>
 
             <section>
-                <h2>1. What is an Operating System?</h2>
-                <p>Think of an Operating System (OS) as the "manager" or "boss" of the computer. It is the most important software that runs on a computer. It manages the computer's memory, processes, hardware, and all of its software. Without an OS, a computer is just a useless box of electronics. It acts as a bridge (interface) between you (the user) and the computer's physical hardware.</p>
-            </section>
-
-            <section>
                 <h2>2. Types of OS – Windows and Linux</h2>
-                <p>There are several operating systems, but the two most common you will learn about are:</p>
+                <p>While there are many operating systems (like macOS for Apple, Android for mobile), the two primary desktop environments are Windows and Linux.</p>
+                
+                <h3>Microsoft Windows:</h3>
                 <ul>
-                    <li><strong>Windows:</strong> Created by Microsoft. It is the most popular OS in the world for personal computers. It is known for being highly user-friendly, visually appealing, and compatible with almost all games and standard software.</li>
-                    <li><strong>Linux:</strong> An open-source operating system. This means its core code is free for anyone to use and modify. It is incredibly secure, highly stable, and widely used by programmers and for running powerful servers.</li>
+                    <li><strong>Nature:</strong> Commercial and proprietary. You must purchase a license to use it.</li>
+                    <li><strong>Interface:</strong> Highly reliant on a <span class="highlight">Graphical User Interface (GUI)</span>. It is designed to be extremely intuitive, using windows, icons, and menus.</li>
+                    <li><strong>Software Compatibility:</strong> The industry standard for PC gaming, standard office work, and commercial software like Adobe Creative Suite.</li>
+                    <li><strong>File System:</strong> Primarily uses NTFS (New Technology File System).</li>
+                </ul>
+
+                <h3>Linux:</h3>
+                <ul>
+                    <li><strong>Nature:</strong> Open-source. The source code is freely available to the public to use, modify, and distribute (e.g., Ubuntu, Mint, Red Hat).</li>
+                    <li><strong>Interface:</strong> While modern Linux has beautiful GUIs, it is renowned for its powerful <span class="highlight">Command Line Interface (CLI)</span> where tasks are executed via typed commands.</li>
+                    <li><strong>Security & Stability:</strong> Highly resistant to viruses and malware. It rarely crashes, making it the top choice for internet servers and software developers.</li>
+                    <li><strong>File System:</strong> Generally uses ext4 (Fourth Extended Filesystem).</li>
                 </ul>
             </section>
 
             <section>
                 <h2>3. Desktop Icons and Start Menu</h2>
-                <p>When you turn on your computer, the first screen you see is the Desktop.</p>
+                <p>The "Desktop" is the primary workspace on your screen when you log into an OS.</p>
                 <ul>
-                    <li><strong>Desktop Icons:</strong> These are small pictures representing files, folders, or programs. Clicking them acts as a quick shortcut to open what you need.</li>
-                    <li><strong>Start Menu:</strong> Usually located at the bottom-left corner of the screen. It is your main gateway to all the programs, settings, and files on your computer. You can also shut down or restart your computer from here.</li>
+                    <li><strong>Desktop Icons:</strong> These are graphical representations of files, folders, or programs. Special system icons include "This PC" (access to drives), "Recycle Bin" (deleted files), and "Network".</li>
+                    <li><strong>Taskbar:</strong> The long bar typically at the bottom of the screen. It shows currently running programs and allows you to "pin" frequently used apps for one-click access.</li>
+                    <li><strong>System Tray (Notification Area):</strong> Located on the far right of the taskbar. It displays the clock, volume controls, network status, and background processes like antivirus software.</li>
+                    <li><strong>Start Menu:</strong> The central launching pad in Windows. Pressing the Windows key opens it, providing access to all installed applications, system settings, power options (Sleep, Shut Down, Restart), and a powerful search bar.</li>
                 </ul>
             </section>
 
             <section>
                 <h2>4. File and Folder Operations</h2>
-                <p>Organizing data is a key skill. Data is stored in <strong>files</strong> (like a single document or photo), and files are kept inside <strong>folders</strong> (like a digital filing cabinet).</p>
+                <p>Data management is the foundation of computer literacy. A <strong>File</strong> is a container for data (text, images, music), identified by its <span class="highlight">extension</span> (e.g., <em>document.docx</em>, <em>photo.jpg</em>, <em>music.mp3</em>). A <strong>Folder (Directory)</strong> is a container used to organize files.</p>
+                <h3>Essential Operations & Shortcuts:</h3>
                 <ul>
-                    <li><strong>Creating:</strong> Right-click an empty space, select "New," and choose "Folder" or a file type.</li>
-                    <li><strong>Copy & Paste:</strong> Duplicating a file from one place to another.</li>
-                    <li><strong>Cut & Paste:</strong> Moving a file completely from its old location to a new one.</li>
-                    <li><strong>Deleting:</strong> Sending files to the Recycle Bin. (Remember, you can restore them from the Recycle Bin unless you empty it!)</li>
+                    <li><strong>Creating:</strong> Right-click empty space &gt; New &gt; Folder/File. Shortcut: <code>Ctrl + Shift + N</code> (Creates a new folder).</li>
+                    <li><strong>Selecting:</strong> Click to select one. <code>Ctrl + Click</code> to select multiple individual files. <code>Shift + Click</code> to select a continuous list. <code>Ctrl + A</code> selects everything.</li>
+                    <li><strong>Copying (<code>Ctrl + C</code>):</strong> Creates a duplicate of the file in the clipboard. The original stays exactly where it is.</li>
+                    <li><strong>Cutting (<code>Ctrl + X</code>):</strong> Prepares the file to be moved. It will be removed from its current location once pasted.</li>
+                    <li><strong>Pasting (<code>Ctrl + V</code>):</strong> Places the copied or cut file into the new destination.</li>
+                    <li><strong>Renaming (<code>F2</code>):</strong> Allows you to change the name of a selected file or folder.</li>
                 </ul>
             </section>
 
             <section>
-                <h2>5. Control Panel Settings</h2>
-                <p>The Control Panel (or "Settings" app in modern Windows) is the command center for adjusting how your computer looks and works. Here you can:</p>
+                <h2>5. Control Panel and Modern Settings</h2>
+                <p>The Control Panel (and the modern Windows 'Settings' app) is where system-wide administrative changes are made.</p>
                 <ul>
-                    <li>Change your desktop background and screen resolution.</li>
-                    <li>Manage user accounts (adding passwords or new users).</li>
-                    <li>Connect to Wi-Fi or network cables.</li>
-                    <li>Adjust mouse tracking speed and keyboard languages.</li>
+                    <li><strong>Network and Internet:</strong> Configure Wi-Fi connections, check internet speed, set up proxy servers, and troubleshoot network adapters.</li>
+                    <li><strong>Hardware and Sound:</strong> Manage connected devices like printers and Bluetooth headsets. The <strong>Device Manager</strong> lives here, allowing you to update or rollback hardware drivers.</li>
+                    <li><strong>User Accounts:</strong> Create new user profiles. Establish <em>Administrator</em> accounts (full control over the PC) versus <em>Standard</em> accounts (cannot install software or change system settings).</li>
+                    <li><strong>Personalization:</strong> Change desktop backgrounds, themes, lock screen images, system colors, and font sizes.</li>
                 </ul>
             </section>
 
             <section>
                 <h2>6. Installing & Uninstalling Programs</h2>
-                <p>To add new capabilities to your computer, you need to install software.</p>
+                <p>Software installation is how you expand your computer's capabilities.</p>
                 <ul>
-                    <li><strong>Installing:</strong> Downloading a setup file (usually an .exe file in Windows) and following the on-screen instructions to set it up.</li>
-                    <li><strong>Uninstalling:</strong> Safely removing software you no longer need. Never just delete a program's folder! Always use the "Add or Remove Programs" feature in the Control Panel to cleanly erase it and free up hard drive space.</li>
+                    <li><strong>Installation Process:</strong> On Windows, this usually involves downloading an <code>.exe</code> (Executable) or <code>.msi</code> (Microsoft Installer) file. Double-clicking it launches an installation wizard that extracts the program files into the "Program Files" directory and registers the software with the Windows Registry.</li>
+                    <li><strong>Proper Uninstallation:</strong> <span class="highlight">Never manually delete a program's folder.</span> This leaves behind fragmented registry keys and hidden data that slows down the PC. Always go to Control Panel &gt; "Programs and Features" (or Settings &gt; Apps), select the program, and click "Uninstall" to remove it cleanly.</li>
                 </ul>
             </section>
 
             <section>
                 <h2>7. Task Manager and System Tools</h2>
-                <p>Sometimes things go wrong, and a program freezes. The <strong>Task Manager</strong> is your emergency rescue tool.</p>
+                <p>The Task Manager is an essential diagnostic tool used to monitor system performance and troubleshoot unresponsive software.</p>
                 <ul>
-                    <li>Pressing <strong>Ctrl + Alt + Delete</strong> (or Ctrl + Shift + Esc) opens the Task Manager.</li>
-                    <li>You can see exactly which programs are slowing down your computer and force them to close ("End Task").</li>
-                    <li><strong>System Tools:</strong> Tools like "Disk Cleanup" help clear out junk files to make your computer run faster.</li>
+                    <li><strong>Accessing Task Manager:</strong> Use the universal shortcut <code>Ctrl + Shift + Esc</code>, or <code>Ctrl + Alt + Delete</code> and select Task Manager.</li>
+                    <li><strong>Processes Tab:</strong> Shows exactly which applications and background processes are currently running. If a program freezes, select it here and click <span class="highlight">"End Task"</span> to force it to close.</li>
+                    <li><strong>Performance Tab:</strong> Provides real-time graphs showing the strain on your CPU, Memory (RAM), Disk usage, and Wi-Fi/Ethernet networks.</li>
+                    <li><strong>Startup Tab:</strong> Crucial for PC speed. It shows programs that launch automatically when you turn on the computer. Disabling unnecessary startup programs dramatically speeds up boot times.</li>
                 </ul>
             </section>
 
             <section>
                 <h2>8. OS Updates and Maintenance</h2>
-                <p>Just like a car needs oil changes, your OS needs maintenance.</p>
+                <p>Proactive maintenance extends the life of the hardware and ensures data security.</p>
                 <ul>
-                    <li><strong>Updates:</strong> Companies like Microsoft regularly send out updates. These fix bugs, add new features, and most importantly, plug security holes to protect you from hackers.</li>
-                    <li><strong>Maintenance:</strong> Running antivirus scans and keeping your system updated ensures your computer stays fast and lives a long time.</li>
+                    <li><strong>Windows Update:</strong> Operating systems are complex and constantly evaluated for security flaws. Updates provide "patches" to fix these vulnerabilities, update built-in antivirus definitions (Windows Defender), and improve system stability.</li>
+                    <li><strong>Disk Cleanup:</strong> A built-in utility that scans the hard drive for temporary files, system cache, and emptied recycle bin data, safely deleting them to free up storage space.</li>
+                    <li><strong>Disk Defragmentation:</strong> Over time, files on a mechanical Hard Disk Drive (HDD) become scattered across the disk, slowing down read speeds. Defragmentation organizes these files back together. <em>(Note: Never defragment a modern Solid State Drive (SSD), as it degrades its lifespan unnecessarily.)</em></li>
+                    <li><strong>Backups:</strong> The most important maintenance task. Regularly copying essential files to an external hard drive or cloud storage (like Google Drive) to protect against hardware failure or ransomware attacks.</li>
                 </ul>
             </section>
 
@@ -289,13 +398,14 @@
 
         // Mouse Down Event
         slider.addEventListener('mousedown', (e) => {
-            // Do not drag if the user is clicking on standard text, to allow selection
-            if(e.target.tagName.toLowerCase() === 'p' || e.target.tagName.toLowerCase() === 'h1' || e.target.tagName.toLowerCase() === 'h2' || e.target.tagName.toLowerCase() === 'li') {
+            // Do not drag if the user is clicking on standard text, to allow selection for students
+            const tag = e.target.tagName.toLowerCase();
+            if(['p', 'h1', 'h2', 'h3', 'li', 'ul', 'strong', 'span'].includes(tag)) {
                 return;
             }
             
             isDown = true;
-            slider.classList.add('no-select'); // Prevent text highlighting while dragging
+            slider.classList.add('no-select'); 
             startY = e.pageY - slider.offsetTop;
             scrollTop = slider.scrollTop;
         });
@@ -317,7 +427,7 @@
             if (!isDown) return;
             e.preventDefault();
             const y = e.pageY - slider.offsetTop;
-            const walk = (y - startY) * 1.5; // Multiply by 1.5 for slightly faster scrolling
+            const walk = (y - startY) * 1.5; 
             slider.scrollTop = scrollTop - walk;
         });
     </script>
